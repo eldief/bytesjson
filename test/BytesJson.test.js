@@ -159,4 +159,14 @@ describe("BytesJson", function () {
       expect(objectConcatenation).to.be.equals('{"key":1},{"key":"value"}');
     });
   });
+
+  describe("complexObject", function () {
+    
+    it('Should return {"author":{"id":1,"name":"Author name","books":[{"title":"My first book"},{"title":"My second book"},{"title":"My third book"}]}}', async function () {
+      const { bytesJson } = await loadFixture(fixture);
+      const complexObject = await bytesJson.complexObject();
+  
+      expect(complexObject).to.be.equals('{"author":{"id":1,"name":"Author name","books":[{"title":"My first book"},{"title":"My second book"},{"title":"My third book"}]}}');
+    });
+  });
 });

@@ -98,3 +98,46 @@ refer to [BytesJson.test.js](test/BytesJson.test.js)
             )
         ).toJson();                            // {'key':1},{'key':'value'}
 ```
+  
+### complex objects:
+```
+    return BytesJson.init()
+            .object(BytesJson.init()
+                .prop(
+                    "author".stringType(),
+                    BytesJson.init().object(BytesJson.init()
+                        .prop(
+                            "id".stringType(),
+                            1.uintType()
+                        ).comma()
+                        .prop(
+                            "name".stringType(),
+                            "Author name".stringType()
+                        ).comma()
+                        .prop(
+                            "books".stringType(),
+                            BytesJson.init().array(BytesJson.init()
+                                .object(BytesJson.init()
+                                    .prop(
+                                        "title".stringType(),
+                                        "My first book".stringType()
+                                    )
+                                ).comma()
+                                .object(BytesJson.init()
+                                    .prop(
+                                        "title".stringType(),
+                                        "My second book".stringType()
+                                    )
+                                ).comma()
+                                .object(BytesJson.init()
+                                    .prop(
+                                        "title".stringType(),
+                                        "My third book".stringType()
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            ).toJson();                     // {"author":{"id":1,"name":"Author name","books":[{"title":"My first book"},{"title":"My second book"},{"title":"My third book"}]}}
+```

@@ -94,4 +94,46 @@ contract BytesJsonUser {
                 )
             ).toJson();
     }
+
+    function complexObject() public pure returns (string memory) {
+        return BytesJson.init()
+            .object(BytesJson.init()
+                .prop(
+                    "author".stringType(),
+                    BytesJson.init().object(BytesJson.init()
+                        .prop(
+                            "id".stringType(),
+                            1.uintType()
+                        ).comma()
+                        .prop(
+                            "name".stringType(),
+                            "Author name".stringType()
+                        ).comma()
+                        .prop(
+                            "books".stringType(),
+                            BytesJson.init().array(BytesJson.init()
+                                .object(BytesJson.init()
+                                    .prop(
+                                        "title".stringType(),
+                                        "My first book".stringType()
+                                    )
+                                ).comma()
+                                .object(BytesJson.init()
+                                    .prop(
+                                        "title".stringType(),
+                                        "My second book".stringType()
+                                    )
+                                ).comma()
+                                .object(BytesJson.init()
+                                    .prop(
+                                        "title".stringType(),
+                                        "My third book".stringType()
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            ).toJson();
+    }
 }
